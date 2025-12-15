@@ -1,0 +1,97 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://techsolutions.com/schema"
+           targetNamespace="http://techsolutions.com/schema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           elementFormDefault="qualified">
+
+  <xs:complexType name="invoice">
+    <xs:sequence>
+      <xs:element name="invoiceId" type="xs:long" minOccurs="0"/>
+      <xs:element name="clientId" type="xs:long"/>
+      <xs:element name="amount" type="xs:decimal"/>
+      <xs:element name="description" type="xs:string"/>
+      <xs:element name="dateEmission" type="xs:date"/>
+      <xs:element name="datePaiement" type="xs:date" minOccurs="0"/>
+      <xs:element name="status" type="xs:string"/>
+      <xs:element name="paymentMethod" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="createInvoiceRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="clientId" type="xs:long"/>
+        <xs:element name="amount" type="xs:decimal"/>
+        <xs:element name="description" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="createInvoiceResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="invoiceId" type="xs:long"/>
+        <xs:element name="status" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="getInvoiceRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="invoiceId" type="xs:long"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getInvoiceResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="invoice" type="tns:invoice"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="getClientInvoicesRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="clientId" type="xs:long"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getClientInvoicesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="invoice" type="tns:invoice" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="payInvoiceRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="invoiceId" type="xs:long"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="payInvoiceResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="status" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="getClientTotalRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="clientId" type="xs:long"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getClientTotalResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="totalAmount" type="xs:decimal"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>
