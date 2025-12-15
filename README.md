@@ -15,6 +15,12 @@ Les opérations proposées incluent :
 - `SOAP Web Services`
 - `WSDL`
 - `JAXB`
+- `Spring Data JPA`
+- `JUnit`
+
+## Base de données
+- Dev: `H2`
+- Prod: `PostgreSQL`
 
 ## Accès au service
 - WSDL :  
